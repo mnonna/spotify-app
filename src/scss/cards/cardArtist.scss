@@ -1,0 +1,52 @@
+@import "@/scss/global/variables.scss";
+
+.cardArtist {
+  $root: &;
+  position: relative;
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+
+    #{$root}__play {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    width: calc(100% + 24px);
+    height: calc(100% + 24px);
+    transform: translate(-50%, -50%);
+    background-color: rgba($cl-dark-light, 0.9);
+    border-radius: $spacer;
+    opacity: 0;
+    transition: opacity 0.8s;
+  }
+
+  &__image {
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: ($spacer);
+    }
+  }
+
+  &__play {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.5s;
+  }
+}

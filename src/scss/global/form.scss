@@ -1,0 +1,20 @@
+.form {
+  $root: &;
+
+  &Row {
+    margin-bottom: (2 * $spacer);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__error {
+    width: 100%;
+    text-align: center;
+    padding: ($spacer) (3 * $spacer);
+    border-radius: $spacer;
+    background-color: $cl-error-transparent;
+    color: $cl-white;
+  }
+}

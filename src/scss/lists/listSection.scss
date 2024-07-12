@@ -1,0 +1,25 @@
+@import '@/scss/global/variables.scss';
+
+.listSection {
+  $root: &;
+  position: relative;
+  width: 100%;
+
+  .swiper {
+    padding: 1.5 * $spacer;
+  }
+
+  .swiper-wrapper {
+    gap: (3 * $spacer);
+    box-sizing: border-box;
+  }
+
+  &__wrapper {
+    width: 100%;
+    margin: (-1.5) * ($spacer);
+  }
+
+  &__slide {
+    width: 12.666667%;
+  }
+}

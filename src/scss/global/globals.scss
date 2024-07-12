@@ -1,0 +1,14 @@
+@import "./variables.scss";
+@import "./reset.scss";
+@import "./form.scss";
+@import "../layout/box.scss";
+
+html, body {
+  background: none;
+  background-color: black;
+  color: $cl-white;
+}
+
+main {
+  padding: $spacer;
+}

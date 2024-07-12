@@ -1,0 +1,16 @@
+@import "../global/globals.scss";
+
+.pageWrapper {
+  $root: &;
+  position: relative;
+
+  &.-has-player {
+    height: calc(100vh - 100px);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}

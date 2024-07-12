@@ -1,0 +1,28 @@
+@import "@/scss/global/variables.scss";
+
+.cardSong {
+  $root: &;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2 * $spacer;
+
+  &__cover {
+    flex: 0 0 50px;
+    max-width: 50px;
+    
+    img {
+      border-radius: $spacer;
+    }
+  }
+
+  &__artists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5 * $spacer;
+  }
+
+  &__artist {
+    color: $cl-gray-light;
+  }
+}

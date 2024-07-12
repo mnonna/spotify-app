@@ -1,0 +1,27 @@
+@import '../global/variables.scss';
+
+.appButton {
+  $root: &;
+  width: 100%;
+  padding: ($spacer) (4 * $spacer);
+  border: 1px solid $cl-green-lime;
+  border-radius: (2 * $spacer);
+
+  &.-with-icon {
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+  }
+
+  &.-round {
+    width: 5 * $spacer;
+    height: 5 * $spacer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.-bg-green {
+    background-color: $cl-green-main;
+  }
+}

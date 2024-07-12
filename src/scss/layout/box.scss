@@ -1,0 +1,13 @@
+.box {
+  background-color: rgba($cl-white, 0.08);
+  border-radius: $spacer;
+  padding: (3 * $spacer);
+
+  &.-auth-form {
+    max-width: 500px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

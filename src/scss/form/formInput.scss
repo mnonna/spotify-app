@@ -1,0 +1,45 @@
+@import "../global/variables.scss";
+
+.formInput {
+  $root: &;
+  position: relative;
+  color: $cl-black;
+
+  &__label,
+  &__input {
+    display: block;
+  }
+
+  &--filled #{$root}__input,
+  &__input:focus {
+    & ~ #{$root}__label {
+      font-size: 12px;
+      transform: translateY(calc(-50% - 8px));
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: (2 * $spacer);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.5s, font-size 0.5s;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    height: 56px;
+    padding-block: 0;
+    padding-inline: 0;
+    padding: (2 * $spacer);
+    border-radius: (2 * $spacer);
+    border: 1px solid rgb(205, 192, 192);
+    transition: padding 0.5s;
+
+    #{$root}--filled &,
+    &:focus {
+      padding-bottom: 0;
+    }
+  }
+}
