@@ -8,7 +8,7 @@ import '@/scss/lists/listSection.scss';
 
 export default async function ListSection({ listType }) {
   const data = await loadListData(listType);
-  const isError = (data.length === 0 || data.error?.length !== 0);
+  const isError = (data.length === 0 || data.error);
 
   return (
     <>
