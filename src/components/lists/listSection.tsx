@@ -8,19 +8,20 @@ import '@/scss/lists/listSection.scss';
 
 export default async function ListSection({ listType }) {
   const data = await loadListData(listType);
+  const isError = (data.length === 0 || data.error?.length !== 0);
 
   return (
     <>
-      {(data && listType === 'following') &&
+      {((data && !isError) && listType === 'following') &&
         <FollowingList data={data} />
       }
-      {(data && listType === 'featured-playlists') &&
+      {((data && !isError) && listType === 'featured-playlists') &&
         <SuggestedTracksList data={data} />
       }
-      {(data && listType === 'browse-categories') &&
+      {((data && !isError) && listType === 'browse-categories') &&
         <CategoriesList data={data} />
       }
-      {(data && listType === 'saved-tracks') &&
+      {((data && !isError) && listType === 'saved-tracks') &&
         <SavedTracksList data={data} />
       }
     </>

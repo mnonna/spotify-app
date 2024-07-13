@@ -1,7 +1,7 @@
 import fetchFromSpotify from '@/utils/fetch';
 
 const loadListData = async (listType: string) => {
-  let data = [];
+  let data = null;
   if (!listType) return data;
 
   switch(listType) {
