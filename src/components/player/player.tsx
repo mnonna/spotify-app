@@ -34,7 +34,7 @@ export default function Player(props: iSongPlaybackProps) {
   }
 
   const togglePrev = async () => {
-    const request = await fetch(`/api/player/set-song`, {
+    const request = await fetch(`/api/player/nav`, {
       method: 'POST',
       body: JSON.stringify({
         action: 'prev'
@@ -46,7 +46,7 @@ export default function Player(props: iSongPlaybackProps) {
   }
 
   const toggleNext = async () => {
-    const request = await fetch(`/api/player/set-song`, {
+    const request = await fetch(`/api/player/nav`, {
       method: 'POST',
       body: JSON.stringify({
         action: 'next'

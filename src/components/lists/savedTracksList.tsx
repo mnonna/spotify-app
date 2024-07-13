@@ -26,7 +26,7 @@ const SavedTracksList: FC<SavedTracksListProps> = ({
 
             return (
               <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={track.album.images[0].url} name={track.name} url={track.href} />
+                <CardArtist image={track.album.images[0].url} name={track.name} uri={track.uri} id={track.id} />
               </SwiperSlide>
             )
           }) }

@@ -1,4 +1,5 @@
-import PlayerPanel from "@/components/player/playerPanel"
+import PlayerPanel from "@/components/player/playerPanel";
+import Box from "@/components/box/box";
 
 export default function DashboardLayout({children}) {
   return (
@@ -11,7 +12,9 @@ export default function DashboardLayout({children}) {
       <div className="pageWrapper__viewer md:col-start-3 md:col-span-5 overflow-hidden">
         <div className="pageWrapper__bar"></div>
         <div className="pageWrapper__content grid">
-          { children }
+          <Box className="overflow-y-auto overflow-x-hidden">
+            { children }
+          </Box>
         </div>
       </div>
       <div className="pageWrapper__player">

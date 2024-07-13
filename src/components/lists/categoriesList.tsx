@@ -25,7 +25,7 @@ const CategoriesList: FC<CategoriesListProps> = ({
             
             return (
               <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={item.icons[0].url} name={item.name} url={item.href} />
+                <CardArtist image={item.icons[0].url} name={item.name} uri={item.uri} id={item.id} />
               </SwiperSlide>
             )
           }) }

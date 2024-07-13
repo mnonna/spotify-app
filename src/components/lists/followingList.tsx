@@ -25,7 +25,7 @@ const FollowingList: FC<FollowingListProps> = ({
             
             return (
               <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={item.images[1].url} name={item.name} url={item.href} />
+                <CardArtist image={item.images[1].url} name={item.name} uri={item.uri} id={item.id} />
               </SwiperSlide>
             )
           }) }
