@@ -1,0 +1,38 @@
+@import "@/scss/global/variables.scss";
+
+.playlistHeader {
+  $root: &;
+  position: relative;
+  display: grid;
+  align-items: flex-end;
+  gap: (3 * $spacer);
+  grid-template-columns: 20% 1fr;
+  margin-bottom: (4 * $spacer);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__content {
+    #{$root}__title {
+      margin-bottom: (4 * $spacer);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    p {
+      margin-bottom: ($spacer);
+
+      &:last-child {
+        color: $cl-gray-light;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__type {
+    text-transform: capitalize;
+  }
+}

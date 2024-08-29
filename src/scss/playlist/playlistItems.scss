@@ -1,0 +1,62 @@
+@import "@/scss/global/variables.scss"; 
+
+.playlistItems {
+  $root: &;
+  position: relative;
+  display: grid;
+  //gap: (3 * $spacer);
+
+  &__item {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 30px 1fr 1fr 1fr;
+    gap: (2 * $spacer);
+    padding: $spacer (2 * $spacer);
+    border-radius: 0.5 * $spacer;
+    transition: background-color 0.5s;
+    
+    @media (hover: hover) {
+      &:hover {
+        background-color: rgba($cl-gray-light, 0.1);
+
+        #{$root}__itemToggle {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        #{$root}__itemIndex {
+          opacity: 0;
+        }
+      }
+    }
+
+    &Col {
+      position: relative;
+      justify-self: flex-end;
+    
+      &:first-child,
+      &:nth-child(2) {
+        justify-self: flex-start;
+      }
+
+      p:last-child {
+        color: $cl-gray-light;
+      }
+    }
+
+    &Index {
+      transition: opacity 0.3s;
+    }
+
+    &Toggle {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+  }
+}

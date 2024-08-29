@@ -12,25 +12,26 @@ export async function POST(req, res) {
     return NextResponse.json({ error: 'Please provide state' }, { status: 500 })
 
   try {
-    let request = null;
+    let fetchRequest = null;
 
     if (state === true) {
-      request = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/pause`, {
+      fetchRequest = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/pause`, {
         method: 'PUT',
         headers: {
           "Authorization": `Bearer ${token.value}`
         },
       });
     } else {
-      request = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/play`, {
+      fetchRequest = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/play`, {
         method: 'PUT',
         headers: {
           "Authorization": `Bearer ${token.value}`
         },
+        body: JSON.stringify(request)
       });      
     }
 
-    const res = await request.json();
+    const res = await fetchRequest.json();
     return NextResponse.json(res);
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 })

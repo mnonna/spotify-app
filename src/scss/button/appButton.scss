@@ -6,6 +6,7 @@
   padding: ($spacer) (4 * $spacer);
   border: 1px solid $cl-green-lime;
   border-radius: (2 * $spacer);
+  cursor: pointer;
 
   &.-with-icon {
     padding: 0;
