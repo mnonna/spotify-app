@@ -5,7 +5,7 @@ import Box from "@/components/box/box";
 export default function Dashboard() {
   return (
     <>
-      <section className="grid gap-y-12 md:gap-y-20 w-full">
+      <section>
         <Suspense fallback={<div>Loading...</div>}>
           <ListSection listType={'following'}></ListSection>
         </Suspense>

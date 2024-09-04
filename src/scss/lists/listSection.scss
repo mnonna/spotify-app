@@ -4,6 +4,12 @@
   $root: &;
   position: relative;
   width: 100%;
+  overflow: hidden;
+  margin-bottom: 6 * $spacer;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   .swiper {
     padding: 1.5 * $spacer;
@@ -20,6 +26,9 @@
   }
 
   &__slide {
-    width: 12.666667%;
+    flex: 0 0 12.666667%;
+    max-width: 12.666667%;
+    min-width: 0;
+    min-height: 0;
   }
 }

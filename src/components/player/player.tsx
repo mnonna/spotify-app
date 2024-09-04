@@ -30,6 +30,7 @@ export default function Player() {
 
   const fetchCurrent = () => {
     fetch(`/api/player?${urlParams}`).then(res => res.json()).then((data) => {
+      if (data === null || typeof data === undefined) return;
       const { item, progress_ms, is_playing } = data;
       const { uri } = item;
 
@@ -38,10 +39,7 @@ export default function Player() {
       setIsPlaying(is_playing);
       setHasInit(true);
 
-      if (uri !== currentUri) {
-        console.log(uri, currentUri);
-        dispatch(setPlaybackState(item));
-      }
+      if (uri !== currentUri) dispatch(setPlaybackState(item));
     });
   }
 

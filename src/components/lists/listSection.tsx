@@ -10,6 +10,8 @@ export default async function ListSection({ listType }) {
   const data = await loadListData(listType);
   const isError = (data.length === 0 || data.error);
 
+  if (data === null || typeof data === undefined) return null;
+
   return (
     <>
       {((data && !isError) && listType === 'following') &&
