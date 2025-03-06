@@ -12,7 +12,7 @@ export async function POST(req, res) {
     const tokenBody = {
       'code': code,
       'grant_type': 'authorization_code',
-      'redirect_uri': 'http://localhost:3000/login/auth'
+      'redirect_uri': process.env.SPOTIFY_REDIRECT_URL
     }
 
     const request = await fetch(process.env.SPOTIFY_CLIENT_GRANT_TOKEN_URL, {
