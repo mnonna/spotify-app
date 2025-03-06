@@ -7,19 +7,19 @@ export async function POST(req, res) {
 
   try {
     const envVars = process.env;
-    const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = envVars;
+    const { NEXT_PUBLIC_SPOTIFY_CLIENT_ID, NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET } = envVars;
 
     const tokenBody = {
       'code': code,
       'grant_type': 'authorization_code',
-      'redirect_uri': process.env.SPOTIFY_REDIRECT_URL
+      'redirect_uri': process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URL
     }
 
-    const request = await fetch(process.env.SPOTIFY_CLIENT_GRANT_TOKEN_URL, {
+    const request = await fetch(process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_GRANT_TOKEN_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + (new (Buffer as any).from(SPOTIFY_CLIENT_ID + ':' + SPOTIFY_CLIENT_SECRET).toString('base64'))
+        'Authorization': 'Basic ' + (new (Buffer as any).from(NEXT_PUBLIC_SPOTIFY_CLIENT_ID + ':' + NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET).toString('base64'))
       },
       body: new URLSearchParams(tokenBody)
     });

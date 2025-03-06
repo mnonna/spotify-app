@@ -12,7 +12,7 @@ export async function POST(req, res) {
     return NextResponse.json({ error: 'Please provide action (previous or next)' }, { status: 500 })
 
   try {
-    let request = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/${action}`, {
+    let request = await fetch(`${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/me/player/${action}`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${token.value}`

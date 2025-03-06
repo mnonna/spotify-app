@@ -15,14 +15,14 @@ export async function POST(req, res) {
     let fetchRequest = null;
 
     if (state === true) {
-      fetchRequest = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/pause`, {
+      fetchRequest = await fetch(`${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/me/player/pause`, {
         method: 'PUT',
         headers: {
           "Authorization": `Bearer ${token.value}`
         },
       });
     } else {
-      fetchRequest = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/play`, {
+      fetchRequest = await fetch(`${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/me/player/play`, {
         method: 'PUT',
         headers: {
           "Authorization": `Bearer ${token.value}`,

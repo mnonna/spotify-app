@@ -7,14 +7,14 @@ export default async function Playlist({params}) {
   const { id, type } = params;
   
   let tracks, name, description, image, followers, owner = null;
-  let apiEndpoint = `${process.env.SPOTIFY_BASE_API_URL}/playlists/${id}`;
+  let apiEndpoint = `${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/playlists/${id}`;
   let artistData = null;
 
   if (type === 'artist') {
-    apiEndpoint = `${process.env.SPOTIFY_BASE_API_URL}/artists/${id}/top-tracks`;
-    artistData = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/artists/${id}`, {});
+    apiEndpoint = `${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/artists/${id}/top-tracks`;
+    artistData = await fetchFromSpotify(`${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/artists/${id}`, {});
   } else if (type === 'album') {
-    apiEndpoint = `${process.env.SPOTIFY_BASE_API_URL}/albums/${id}`;
+    apiEndpoint = `${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/albums/${id}`;
   }
 
   const data = await fetchFromSpotify(`${apiEndpoint}`, {});

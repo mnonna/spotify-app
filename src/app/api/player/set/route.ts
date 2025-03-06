@@ -12,7 +12,7 @@ export async function PUT(req, res) {
     return NextResponse.json({ error: 'Please provide context' }, { status: 500 })
 
   try {
-    const request = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/play`, {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/me/player/play`, {
       method: 'PUT',
       headers: {
         "Authorization": `Bearer ${token.value}`

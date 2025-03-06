@@ -5,7 +5,7 @@ import fetchFromSpotify from "@/utils/fetch";
 
 export default async function Search({params}) {
   const { phrase } = params;
-  const data = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/search`, {
+  const data = await fetchFromSpotify(`${process.env.NEXT_PUBLIC_SPOTIFY_BASE_API_URL}/search`, {
     q: phrase,
     type: 'album,artist,playlist,track',
   });
