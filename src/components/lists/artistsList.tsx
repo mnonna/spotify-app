@@ -3,30 +3,37 @@ import { FC } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardArtist from "../cards/cardArtist";
 import ListSectionLayout from "@/components/lists/listSectionLayout";
+
 import 'swiper/scss';
 
-interface SavedTracksListProps {
+interface ArtistsListProps {
   data: any,
+  heading?: string
 }
 
-const SavedTracksList: FC<SavedTracksListProps> = ({
-  data
+const ArtistsList: FC<ArtistsListProps> = ({
+  data, heading
 }) => {
 
 
   return (
-    <ListSectionLayout heading={`Saved tracks`}>
+    <ListSectionLayout heading={heading ?? `My top artists`}>
       <Swiper
           slidesPerView={'auto'}
           autoplay={false}
           spaceBetween={24}
         >
           { data.items.map((item, index) => {
-            const { track } = item;
+            if (!item) return null;
+            let image = '';
+            
+            if (item.images) {
+              image = item.images?.length > 1 ? item.images[1].url : '';
+            }
 
             return (
               <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={track.album.images[0].url} name={track.name} uri={track.uri} id={track.id} />
+                <CardArtist image={image} name={item.name} uri={item.uri} id={item.id} />
               </SwiperSlide>
             )
           }) }
@@ -35,4 +42,4 @@ const SavedTracksList: FC<SavedTracksListProps> = ({
   )
 }
 
-export default SavedTracksList;
+export default ArtistsList;

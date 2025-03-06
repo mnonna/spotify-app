@@ -15,7 +15,6 @@ export const config = {
 
 export default function handler(req, res) {
   proxy(req, res, (err) => {
-		console.log(req);
     if (err) {
       throw err;
     }

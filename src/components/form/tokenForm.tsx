@@ -44,7 +44,7 @@ const TokenForm: FC<TokenFormProps> = ({code, error}) => {
           <h1 className="text-2xl">Please click button below to proceed further authorization</h1>
         </FormRow>
         <FormRow>
-          <AppButton label={'Proceed'} onClickEvent={() => getSpotifyToken(code, error)}></AppButton>
+          <AppButton label={'Proceed'} onClick={() => getSpotifyToken(code, error)}></AppButton>
         </FormRow>
         {errorMessage &&
           <FormRow>

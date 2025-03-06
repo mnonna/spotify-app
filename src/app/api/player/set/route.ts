@@ -8,7 +8,7 @@ export async function PUT(req, res) {
   const cookiesList = cookies();
   const token = cookiesList.get('auth-token');
 
-  if (body === null || typeof body === 'undefined')
+  if (body === null || body === 'undefined')
     return NextResponse.json({ error: 'Please provide context' }, { status: 500 })
 
   try {

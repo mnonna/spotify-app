@@ -11,6 +11,19 @@
   border-radius: 0.5 * $spacer;
   transition: background-color 0.5s;
   
+  &.active {
+    background-color: rgba($cl-gray-light, 0.1);
+
+    #{$root}__toggle {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #{$root}__index {
+      opacity: 0;
+    }
+  }
+
   @media (hover: hover) {
     &:hover {
       background-color: rgba($cl-gray-light, 0.1);

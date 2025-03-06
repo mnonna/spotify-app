@@ -1,3 +1,11 @@
+export const formatNumberWithSpaces = (num: number) => {
+  if (!num) return '';
+  let numStr = num.toString();
+  let formatted = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  
+  return formatted;
+}
+
 export const getPercentage = (start: number, end: number) => {
   return ((start / end) * 100).toFixed(2);
 }

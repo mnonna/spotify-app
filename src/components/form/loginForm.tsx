@@ -63,7 +63,7 @@ export default function LoginForm() {
         </FormRow>
         <FormRow className='justify-center'>
           <FormField>
-            <AppButton label={'Proceed'} onClickEvent={onSubmit}></AppButton>
+            <AppButton label={'Proceed'} onClick={onSubmit}></AppButton>
           </FormField>
         </FormRow>
       </Box>

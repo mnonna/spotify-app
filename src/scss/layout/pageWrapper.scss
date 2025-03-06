@@ -5,12 +5,37 @@
   position: relative;
 
   &.-has-player {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 108px);
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
+
+  &__search {
+    
+  }
+
+  &__search-wrapper {
+    display: inline-block;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 2 * $spacer;
+    height: 40px;
+  }
+
+  &__player {
+    $root: &;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: black;
+    padding: 0 $spacer;
   }
 }

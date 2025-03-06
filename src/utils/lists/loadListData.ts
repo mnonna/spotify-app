@@ -1,17 +1,20 @@
 import fetchFromSpotify from '@/utils/fetch';
 
-const loadListData = async (listType: string) => {
+const loadListData = async (listType: string, params: any) => {
   let data = null;
   if (!listType) return data;
 
   switch(listType) {
+    case 'artists':
+      data = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/me/top/artists`, {});
+      break;
     case 'following':
       data = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/me/following`, {
         type: 'artist'
       });
       break;
     case 'featured-playlists':
-      data = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/browse/featured-playlists`, {
+      data = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/me/playlists`, {
         locale: 'en_GB',
         limit: 10
       });
@@ -27,6 +30,11 @@ const loadListData = async (listType: string) => {
         market: 'PL'
       });
       break;
+    case 'album':
+      const { id, include_groups } = params;
+      data = await fetchFromSpotify(`${process.env.SPOTIFY_BASE_API_URL}/artists/${id}/albums`, {
+        include_groups: include_groups
+      });
     default:
       break;
   }

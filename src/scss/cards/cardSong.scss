@@ -8,10 +8,12 @@
   gap: 2 * $spacer;
 
   &__cover {
-    flex: 0 0 50px;
-    max-width: 50px;
+    flex: 0 0 48px;
+    max-width: 48px;
     
     img {
+      width: 6 * $spacer;
+      height: 6 * $spacer;
       border-radius: $spacer;
     }
   }
@@ -24,5 +26,15 @@
 
   &__artist {
     color: $cl-gray-light;
+  }
+
+  &__link {
+    z-index: 2;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

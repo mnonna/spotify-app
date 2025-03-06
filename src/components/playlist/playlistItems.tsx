@@ -2,11 +2,12 @@
 import CardPlaylistSong from '../cards/cardPlaylistSong';
 import '@/scss/playlist/playlistItems.scss';
 
-export default function PlaylistItems({uri, tracks}) {
+export default function PlaylistItems({uri, tracks, type="playlist"}) {
   return (
     <section className="playlistItems">
       {tracks.map((item, index) => {
-        const { track } = item;
+        let { track } = item;
+        if (!track) track = item;
         
         const cardProps = {
           name: track.name,
@@ -17,6 +18,7 @@ export default function PlaylistItems({uri, tracks}) {
           playlist_uri: uri,
           offset: index,
           list_index: index + 1,
+          type
         }
 
         return (

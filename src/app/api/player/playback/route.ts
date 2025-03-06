@@ -8,7 +8,7 @@ export async function POST(req, res) {
   const cookiesList = cookies();
   const token = cookiesList.get('auth-token');
 
-  if (state === null || typeof state === 'undefined')
+  if (state === null || state === 'undefined')
     return NextResponse.json({ error: 'Please provide state' }, { status: 500 })
 
   try {
@@ -25,12 +25,18 @@ export async function POST(req, res) {
       fetchRequest = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/play`, {
         method: 'PUT',
         headers: {
-          "Authorization": `Bearer ${token.value}`
+          "Authorization": `Bearer ${token.value}`,
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(request)
       });      
     }
 
+    if (!fetchRequest.ok) {
+      const errorResponse = await fetchRequest.json();
+      throw new Error(`Error: ${errorResponse.error.message}`);
+    }
+    
     const res = await fetchRequest.json();
     return NextResponse.json(res);
   } catch (error) {

@@ -15,7 +15,7 @@
 
   &__content {
     #{$root}__title {
-      margin-bottom: (4 * $spacer);
+      margin-bottom: (2 * $spacer);
 
       &:last-child {
         margin-bottom: 0;
@@ -34,5 +34,59 @@
 
   &__type {
     text-transform: capitalize;
+  }
+
+  &__details,
+  &__detail {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacer;
+  }
+
+  &__image {
+    img {
+      aspect-ratio: 1 / 1;
+      border-radius: $spacer;
+    }
+  }
+
+  &.-full {
+    z-index: 2;
+    min-height: 400px;
+    grid-template-columns: unset;
+
+    #{$root}__image {
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      top: 0;
+      width: calc(100% + (6 * $spacer));
+      //max-width: 640px;
+      height: calc(100% + (3 * $spacer));
+      transform: translate((-3 * $spacer), (-3 * $spacer));
+
+      &::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    #{$root}__content {
+      padding-top: 3 * $spacer;
+      padding-bottom: 3 * $spacer;
+    }
   }
 }

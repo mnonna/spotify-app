@@ -6,5 +6,6 @@ interface iCardSongArtist {
 export interface iCardSongProps {
   image: string,
   name: string,
-  artists?: Array<iCardSongArtist>
+  artists?: Array<iCardSongArtist>,
+  uri?: string,
 }

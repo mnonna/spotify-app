@@ -7,6 +7,9 @@ export default function Dashboard() {
     <>
       <section>
         <Suspense fallback={<div>Loading...</div>}>
+          <ListSection listType={'artists'}></ListSection>
+        </Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
           <ListSection listType={'following'}></ListSection>
         </Suspense>
         <Suspense fallback={<div>Loading...</div>}>

@@ -18,13 +18,26 @@
     }
   }
 
+  &.-small {
+    #{$root}__input:focus {
+      & ~ #{$root}__label {
+        opacity: 0;
+        pointer-events: none;
+      } 
+    }
+  }
+
   &__label {
     position: absolute;
     left: (2 * $spacer);
     top: 50%;
     transform: translateY(-50%);
-    transition: transform 0.5s, font-size 0.5s;
+    transition: transform 0.5s, font-size 0.5s, opacity 0.5s;
     pointer-events: none;
+
+    #{$root}.-small & {
+      font-size: 12px;
+    }
   }
 
   &__input {
@@ -40,6 +53,11 @@
     #{$root}--filled &,
     &:focus {
       padding-bottom: 0;
+    }
+
+    #{$root}.-small & {
+      height: 5 * $spacer;
+      padding: $spacer (2 * $spacer);
     }
   }
 }

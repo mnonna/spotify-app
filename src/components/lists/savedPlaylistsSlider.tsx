@@ -1,31 +1,32 @@
 'use client';
 import { FC } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/scss';
-
 import CardArtist from "../cards/cardArtist";
 import ListSectionLayout from "@/components/lists/listSectionLayout";
 
-interface FollowingListProps {
+import 'swiper/scss';
+
+interface savedPlaylistsSliderProps {
   data: any,
+  heading?: string
 }
 
-const FollowingList: FC<FollowingListProps> = ({
-  data
+const SavedPlaylistsSlider: FC<savedPlaylistsSliderProps> = ({
+  data, heading
 }) => {
-
-
   return (
-    <ListSectionLayout heading={`Followed artists`}>
+    <ListSectionLayout heading={heading ?? 'Saved Playlists'}>
       <Swiper
           slidesPerView={'auto'}
           autoplay={false}
+          spaceBetween={24}
         >
-          { data.artists.items.map((item, index) => {
+          { data.items.map((item, index) => {
+            const cardImage = (item.images) ? item.images[0].url : '';
             
             return (
               <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={item.images[1].url} name={item.name} uri={item.uri} id={item.id} />
+                <CardArtist image={cardImage} name={item.name} uri={item.uri} id={item.id} />
               </SwiperSlide>
             )
           }) }
@@ -34,4 +35,4 @@ const FollowingList: FC<FollowingListProps> = ({
   )
 }
 
-export default FollowingList;
+export default SavedPlaylistsSlider;

@@ -8,8 +8,8 @@ export async function POST(req, res) {
   const cookiesList = cookies();
   const token = cookiesList.get('auth-token');
 
-  if (action === null || typeof action === 'undefined')
-    return NextResponse.json({ error: 'Please provide action (prev or next)' }, { status: 500 })
+  if (action === null || action === 'undefined')
+    return NextResponse.json({ error: 'Please provide action (previous or next)' }, { status: 500 })
 
   try {
     let request = await fetch(`${process.env.SPOTIFY_BASE_API_URL}/me/player/${action}`, {

@@ -12,11 +12,10 @@
   }
 
   .swiper {
-    padding: 1.5 * $spacer;
+    padding: 3 * $spacer;
   }
 
   .swiper-wrapper {
-    gap: (3 * $spacer);
     box-sizing: border-box;
   }
 
@@ -30,5 +29,20 @@
     max-width: 12.666667%;
     min-width: 0;
     min-height: 0;
+    height: auto;
+  }
+
+  &.-list {
+    #{$root}__wrapper {
+      margin: 0;
+    }
+
+    #{$root}__item {
+      margin-bottom: $spacer;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }

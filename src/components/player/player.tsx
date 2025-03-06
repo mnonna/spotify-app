@@ -30,8 +30,10 @@ export default function Player() {
 
   const fetchCurrent = () => {
     fetch(`/api/player?${urlParams}`).then(res => res.json()).then((data) => {
-      if (data === null || typeof data === undefined) return;
+      if (data === null || data === undefined) return;
       const { item, progress_ms, is_playing } = data;
+      
+      if (item === null || item === undefined) return;
       const { uri } = item;
 
       setCurrent(item);
@@ -85,7 +87,7 @@ export default function Player() {
     const request = await fetch(`/api/player/nav`, {
       method: 'POST',
       body: JSON.stringify({
-        action: 'prev'
+        action: 'previous'
       })
     });
 
@@ -109,12 +111,12 @@ export default function Player() {
     <div className="player">
       <div className="player__controls">
         <div className="player__nav -prev">
-          <AppButton classNames={`-with-icon -round`} onClickEvent={togglePrev}>
+          <AppButton classNames={`-with-icon -round`} onClick={togglePrev}>
             <SkipPreviousIcon />
           </AppButton>
         </div>
         <div className="player__nav -play">
-          <AppButton classNames={`-with-icon -round`} onClickEvent={togglePlay}>
+          <AppButton classNames={`-with-icon -round`} onClick={togglePlay}>
             {!isPlaying && (
               <PlayArrowIcon />
             )}
@@ -124,7 +126,7 @@ export default function Player() {
           </AppButton>
         </div>
         <div className="player__nav -next">
-          <AppButton classNames={`-with-icon -round`} onClickEvent={toggleNext}>
+          <AppButton classNames={`-with-icon -round`} onClick={toggleNext}>
             <SkipNextIcon />
           </AppButton>
         </div>

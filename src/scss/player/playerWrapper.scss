@@ -2,13 +2,7 @@
 
 .playerPanel {
   $root: &;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
   width: 100%;
-  background-color: black;
-  padding: 0 $spacer;
 
   &__wrapper {
     width: 100%;
