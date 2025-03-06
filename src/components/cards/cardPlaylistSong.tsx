@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/utils/redux/store';
 import '@/scss/cards/cardPlaylistSong.scss';
 
 export default function CardPlaylistSong(data: iCardPlaylistProps) {
+  const currentSong = useAppSelector(state => state.playback);
   if (!data) return null;
 
   const { name, album, artists, duration_ms, uri, playlist_uri, offset, list_index, type } = data;
@@ -25,7 +26,6 @@ export default function CardPlaylistSong(data: iCardPlaylistProps) {
   if (artists.length > 4) artistsText += ` oraz ${artists.length - 3} więcej...`
 
   const durationStr = msToTime(duration_ms);
-  const currentSong = useAppSelector(state => state.playback);
   const { currentPlayback } = currentSong;
   const currentUri = currentPlayback?.uri;
   const active = currentUri === uri;
