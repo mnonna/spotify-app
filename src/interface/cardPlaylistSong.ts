@@ -7,4 +7,5 @@ export interface iCardPlaylistProps {
   playlist_uri: string,
   offset: number,
   list_index: number
+  type?: string,
 }
