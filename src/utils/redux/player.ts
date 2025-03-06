@@ -12,7 +12,7 @@ export const playbackSlice = createSlice({
   name: "playbackState",
   initialState,
   reducers: {
-    setPlaybackState: (state, action: PayloadAction<object>) => {
+    setPlaybackState: (state, action: PayloadAction<{ uri: string; [key: string]: any }>) => {
       const { currentPlayback } = state;
       
       if (!currentPlayback) {
