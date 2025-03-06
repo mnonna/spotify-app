@@ -10,7 +10,7 @@ export async function POST(req, res) {
   try {
     const scope = `user-read-private user-read-email user-top-read user-follow-read 
       user-library-read playlist-read-private user-read-playback-state user-modify-playback-state user-read-currently-playing`;
-    const authorizeURL = `https://accounts.spotify.com/authorize?${new URLSearchParams({ response_type: 'code', client_id: clientID, scope: scope, redirect_uri: `http://localhost:3000/login/auth`,})}`
+    const authorizeURL = `https://accounts.spotify.com/authorize?${new URLSearchParams({ response_type: 'code', client_id: clientID, scope: scope, redirect_uri: process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URL,})}`
 
     return NextResponse.json({
       auth_url: authorizeURL
