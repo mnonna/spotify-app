@@ -6,7 +6,17 @@ import SavedTracksList from "@/components/lists/savedTracksList";
 import loadListData from "@/utils/lists/loadListData";
 
 export default async function ListSection({ listType, params = null }) {
-  const data = await loadListData(listType, params);
+  const dataProm = new Promise((resolve) => {
+    setTimeout(async () => {
+      resolve(await loadListData(listType, params));
+    }, 2000)
+  });
+
+  let data = null;
+  await dataProm.then((res) => {
+    data = res;
+  });
+  
   const isError = (data.length === 0 || data.error);
 
   if (data === null || data === undefined) return null;

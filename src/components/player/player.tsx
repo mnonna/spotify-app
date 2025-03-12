@@ -1,10 +1,5 @@
-'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react'; // import useCallback
 import { publish } from '@/utils/events/events';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
 import AppButton from '@/components/button/AppButton';
 import { getPercentage, msToTime } from '@/utils/math';
 import { subscribe, unsubscribe } from '@/utils/events/events';
@@ -62,16 +57,16 @@ export default function Player() {
       clearInterval(intervalId);
       unsubscribe('playerStateChange', checkPlayerState);
     }
-  }, [current, hasInit, progress, isPlaying])
+  }, [current, hasInit, progress, isPlaying]);
 
   const progressReadable = msToTime(progress);
   const durationReadable = msToTime(currentDuration);
   const percentage = getPercentage(progress, currentDuration);
   const barStyle = {
     width: `${percentage.toString()}%`,
-  }
+  };
 
-  const togglePlay = async () => {
+  const togglePlay = useCallback(async () => {
     const request = await fetch(`/api/player/playback`, {
       method: 'POST',
       body: JSON.stringify({
@@ -81,9 +76,9 @@ export default function Player() {
 
     const response = await request.json();
     publish('playerStateChange');
-  }
+  }, [isPlaying]);
 
-  const togglePrev = async () => {
+  const togglePrev = useCallback(async () => {
     const request = await fetch(`/api/player/nav`, {
       method: 'POST',
       body: JSON.stringify({
@@ -93,9 +88,9 @@ export default function Player() {
 
     const response = await request.json();
     publish('playerStateChange');
-  }
+  }, []);
 
-  const toggleNext = async () => {
+  const toggleNext = useCallback(async () => {
     const request = await fetch(`/api/player/nav`, {
       method: 'POST',
       body: JSON.stringify({
@@ -105,30 +100,21 @@ export default function Player() {
 
     const response = await request.json();
     publish('playerStateChange');
-  }
+  }, []);
+
+  const iconPlayState = useMemo(() => (isPlaying ? 'PauseIcon' : 'PlayArrowIcon'), [isPlaying]);
 
   return (
     <div className="player">
       <div className="player__controls">
         <div className="player__nav -prev">
-          <AppButton classNames={`-with-icon -round`} onClick={togglePrev}>
-            <SkipPreviousIcon />
-          </AppButton>
+          <AppButton classNames={`-with-icon -round`} onClick={togglePrev} muiIcon='SkipPreviousIcon' />
         </div>
         <div className="player__nav -play">
-          <AppButton classNames={`-with-icon -round`} onClick={togglePlay}>
-            {!isPlaying && (
-              <PlayArrowIcon />
-            )}
-            {isPlaying && (
-              <PauseIcon />
-            )}
-          </AppButton>
+          <AppButton classNames={`-with-icon -round`} onClick={togglePlay} muiIcon={iconPlayState ?? 'PlayArrowIcon'} />
         </div>
         <div className="player__nav -next">
-          <AppButton classNames={`-with-icon -round`} onClick={toggleNext}>
-            <SkipNextIcon />
-          </AppButton>
+          <AppButton classNames={`-with-icon -round`} onClick={toggleNext} muiIcon='SkipNextIcon' />
         </div>
       </div>
       <div className="player__details">

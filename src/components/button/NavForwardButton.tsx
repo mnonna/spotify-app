@@ -1,7 +1,6 @@
 'use client';
 
 import AppButton from "@/components/button/AppButton";
-import { ArrowForward } from "@mui/icons-material";
 
 export const NavForwardButton = () => {
     const onNextButton = () => {
@@ -9,8 +8,6 @@ export const NavForwardButton = () => {
     };
 
     return (
-        <AppButton classNames={`-with-icon`} onClick={onNextButton}>
-            <ArrowForward />
-        </AppButton>
+        <AppButton classNames={`-with-icon`} onClick={onNextButton} muiIcon="ArrowForward" />
     )
 }

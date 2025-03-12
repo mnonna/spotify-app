@@ -16,7 +16,8 @@ const SavedPlaylistsSlider: FC<savedPlaylistsSliderProps> = ({
 }) => {
   return (
     <ListSectionLayout heading={heading ?? 'Saved Playlists'}>
-      <Swiper
+      { data && data.items !== undefined ? 
+        <Swiper
           slidesPerView={'auto'}
           autoplay={false}
           spaceBetween={24}
@@ -30,7 +31,9 @@ const SavedPlaylistsSlider: FC<savedPlaylistsSliderProps> = ({
               </SwiperSlide>
             )
           }) }
-      </Swiper> 
+        </Swiper>
+        : null 
+      } 
     </ListSectionLayout>
   )
 }

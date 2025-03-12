@@ -1,10 +1,8 @@
 import { publish } from '@/utils/events/events';
 import { msToTime } from '@/utils/math';
 import AppButton from '@/components/button/AppButton';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
 import { iCardPlaylistProps } from '@/interface/cardPlaylistSong';
-import { useAppDispatch, useAppSelector } from '@/utils/redux/store';
+import { useAppSelector } from '@/utils/redux/store';
 import '@/scss/cards/cardPlaylistSong.scss';
 
 export default function CardPlaylistSong(data: iCardPlaylistProps) {
@@ -50,18 +48,13 @@ export default function CardPlaylistSong(data: iCardPlaylistProps) {
     publish('playerStateChange');
   }
 
+  const iconPlayState = (active) ? 'PauseIcon' : 'PlayArrowIcon';
+
   return (
     <div className={`cardPlaylistSong ${classes.join(' ')}`}>
       <div className="cardPlaylistSong__col text-sm">
         <div className="cardPlaylistSong__toggle">
-          <AppButton classNames={`-with-icon -round`} onClick={() => togglePlay()}>
-            {!active && (
-              <PlayArrowIcon />
-            )}
-            {active && (
-              <PauseIcon />
-            )}
-          </AppButton>
+          <AppButton classNames={`-with-icon -round`} onClick={() => togglePlay()} muiIcon={iconPlayState} />
         </div>
         <div className="cardPlaylistSong__index">{list_index}</div>
       </div>

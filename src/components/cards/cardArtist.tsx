@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import AppButton from '../button/AppButton';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Placeholder from '../../../public/placeholder.svg';
 import "@/scss/cards/cardArtist.scss";
 
@@ -65,9 +64,7 @@ export default function CardArtist(props) {
           </div>
           {uri && uri.length > 0 && href !== '' && (
             <div className="cardArtist__play absolute bottom-2 right-2">
-              <AppButton classNames='-with-icon -round -bg-green' onClick={setPlayerContext}>
-                <PlayArrowIcon />
-              </AppButton>
+              <AppButton classNames='-with-icon -round -bg-green' onClick={setPlayerContext} muiIcon='PlayArrow' />
             </div>
           )}
         </div>

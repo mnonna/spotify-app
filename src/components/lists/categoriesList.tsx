@@ -17,19 +17,22 @@ const CategoriesList: FC<CategoriesListProps> = ({
 
   return (
     <ListSectionLayout heading={`Browse everything`}>
-      <Swiper
-          slidesPerView={'auto'}
-          autoplay={false}
-          spaceBetween={24}
-        >
-          { data.categories.items.map((item, index) => {
-            return (
-              <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={item.icons[0].url} name={item.name} uri={`spotify:categories:${item.id}`} id={item.id} />
-              </SwiperSlide>
-            )
-          }) }
-      </Swiper> 
+      { data && data.items !== undefined ? 
+        <Swiper
+            slidesPerView={'auto'}
+            autoplay={false}
+            spaceBetween={24}
+          >
+            { data.categories.items.map((item, index) => {
+              return (
+                <SwiperSlide key={index} className={'listSection__slide'}>
+                  <CardArtist image={item.icons[0].url} name={item.name} uri={`spotify:categories:${item.id}`} id={item.id} />
+                </SwiperSlide>
+              )
+            }) }
+        </Swiper>
+        : null 
+      } 
     </ListSectionLayout>
   )
 }

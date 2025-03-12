@@ -15,10 +15,9 @@ const ArtistsList: FC<ArtistsListProps> = ({
   data, heading
 }) => {
 
-
   return (
     <ListSectionLayout heading={heading ?? `My top artists`}>
-      <Swiper
+      {data && data.items !== undefined ? <Swiper
           slidesPerView={'auto'}
           autoplay={false}
           spaceBetween={24}
@@ -37,7 +36,7 @@ const ArtistsList: FC<ArtistsListProps> = ({
               </SwiperSlide>
             )
           }) }
-      </Swiper> 
+      </Swiper> : null}
     </ListSectionLayout>
   )
 }

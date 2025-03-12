@@ -1,7 +1,6 @@
 'use client';
 
 import AppButton from "@/components/button/AppButton";
-import { ArrowBack } from "@mui/icons-material";
 
 export const NavPrevButton = () => {
     const onBackButton = () => {
@@ -9,8 +8,6 @@ export const NavPrevButton = () => {
     };
 
     return (
-        <AppButton classNames={`-with-icon`} onClick={onBackButton}>
-            <ArrowBack />
-        </AppButton>
+        <AppButton classNames={`-with-icon`} onClick={onBackButton} muiIcon="ArrowBack" />
     )
 }

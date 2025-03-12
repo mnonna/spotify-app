@@ -16,21 +16,24 @@ const SavedTracksList: FC<SavedTracksListProps> = ({
 
   return (
     <ListSectionLayout heading={`Saved tracks`}>
-      <Swiper
-          slidesPerView={'auto'}
-          autoplay={false}
-          spaceBetween={24}
-        >
-          { data.items.map((item, index) => {
-            const { track } = item;
+      { data && data.items !== undefined ? 
+        <Swiper
+            slidesPerView={'auto'}
+            autoplay={false}
+            spaceBetween={24}
+          >
+            { data.items.map((item, index) => {
+              const { track } = item;
 
-            return (
-              <SwiperSlide key={index} className={'listSection__slide'}>
-                <CardArtist image={track.album.images[0].url} name={track.name} uri={track.uri} id={track.id} />
-              </SwiperSlide>
-            )
-          }) }
-      </Swiper> 
+              return (
+                <SwiperSlide key={index} className={'listSection__slide'}>
+                  <CardArtist image={track.album.images[0].url} name={track.name} uri={track.uri} id={track.id} />
+                </SwiperSlide>
+              )
+            }) }
+        </Swiper>
+        : null
+      } 
     </ListSectionLayout>
   )
 }

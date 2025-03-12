@@ -1,0 +1,11 @@
+@import "@/scss/global/variables.scss"; 
+
+.listSectionSkeleton {
+    $root: &;
+    position: relative;
+
+    &__wrapper {
+        display: flex;
+        gap: (2 * $spacer);
+    }
+}
