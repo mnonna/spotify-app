@@ -14,10 +14,10 @@ const CategoriesList: FC<CategoriesListProps> = ({
   data
 }) => {
 
-
+  console.log(data);
   return (
     <ListSectionLayout heading={`Browse everything`}>
-      { data && data.items !== undefined ? 
+      { data && data.categories.items !== undefined ? 
         <Swiper
             slidesPerView={'auto'}
             autoplay={false}

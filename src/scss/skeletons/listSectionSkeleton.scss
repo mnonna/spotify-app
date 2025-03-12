@@ -1,11 +1,22 @@
-@import "@/scss/global/variables.scss"; 
+@import "@/scss/global/variables.scss";
 
 .listSectionSkeleton {
     $root: &;
     position: relative;
 
     &__wrapper {
-        display: flex;
-        gap: (2 * $spacer);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 12.66667%);
+        grid-auto-flow: column;
+        width: 100%;
+        gap: (3 * $spacer);
+        padding: (3 * $spacer);
+        margin: (-1.5 * $spacer);
+        overflow: hidden;
+    }
+
+    &__item {
+        width: 100%;
+        height: 100%;
     }
 }

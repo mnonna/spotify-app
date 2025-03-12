@@ -1,0 +1,27 @@
+@import "@/scss/global/variables.scss";
+
+.cardSkeleton {
+    $root: &;
+    position: relative;
+
+    &__image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+        background-color: red;
+        animation: skeleton-loading 1s linear infinite alternate;
+    }
+
+    &__title-bar {
+        animation: skeleton-loading 1s linear infinite alternate;
+    }
+
+    @keyframes skeleton-loading {
+        0% {
+            background-color: hsl(200, 20%, 80%);
+        }
+        100% {
+            background-color: hsl(200, 20%, 95%);
+        }
+    }
+}

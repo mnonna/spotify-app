@@ -20,8 +20,6 @@ const AppButton: FC<AppButtonProps> = ({
   onClick,
 }) => {
   const classNamesConcat = `appButton ${classNames}`;
-
-  // Memoize icon import based on the muiIcon prop
   const IconComponent = useMemo(() => {
     const iconMap = {
       ArrowBack: dynamic(() => import('@mui/icons-material/ArrowBack'), { ssr: false }),
@@ -34,16 +32,14 @@ const AppButton: FC<AppButtonProps> = ({
     };
 
     return muiIcon && iconMap[muiIcon] ? iconMap[muiIcon] : null;
-  }, [muiIcon]); // Only recompute the icon when muiIcon changes
+  }, [muiIcon]);
 
   return (
     <button type="button" className={classNamesConcat} onClick={onClick}>
       <span className="appButton__text">{label || ''}</span>
       {IconComponent ? <IconComponent /> : null}
-      {children}
     </button>
   );
 };
 
-// Wrap in React.memo to prevent unnecessary re-renders
 export default React.memo(AppButton);
