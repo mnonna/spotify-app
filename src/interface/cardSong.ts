@@ -8,4 +8,5 @@ export interface iCardSongProps {
   name: string,
   artists?: Array<iCardSongArtist>,
   uri?: string,
+  albumUri?: string,
 }

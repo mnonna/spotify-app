@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import ArtistsList from "@/components/lists/artistsList";
 import AlbumsList from "@/components/lists/albumsList";
+import ListSectionSkeleton from "@/components/skeletons/listSectionSkeleton";
 import fetchFromSpotify from "@/utils/fetch";
 
 export default async function Search({params}) {
@@ -10,13 +11,15 @@ export default async function Search({params}) {
     type: 'album,artist,playlist,track',
   });
 
-  console.log(data);
-
   return (
     <>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<ListSectionSkeleton itemsCount={7}/>}>
           <AlbumsList data={data.albums} />
+        </Suspense> 
+        <Suspense fallback={<ListSectionSkeleton itemsCount={7}/>}>
           <ArtistsList data={data.artists} heading="Artists" />
+        </Suspense> 
+        <Suspense fallback={<ListSectionSkeleton itemsCount={7}/>}>
           <ArtistsList data={data.playlists} heading="Playlists" />
         </Suspense> 
     </>

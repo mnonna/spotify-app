@@ -14,7 +14,6 @@ const CategoriesList: FC<CategoriesListProps> = ({
   data
 }) => {
 
-  console.log(data);
   return (
     <ListSectionLayout heading={`Browse everything`}>
       { data && data.categories.items !== undefined ? 

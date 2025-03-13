@@ -1,18 +1,17 @@
 'use client';
 
-import { memo } from 'react';
 import { useAppSelector } from '@/utils/redux/store';
 import CardSong from "../cards/cardSong";
-import { iCardSongProps } from '@/interface/cardSong';
 
 const PlayerCurrPlaying = () => {
-  let currImage, currName, currArtists = null;
+  let currImage, currName, currArtists, albumUri = null;
   const current = useAppSelector(state => state.playback);
   const { currentPlayback } = current;
   
   if (currentPlayback !== null) {
     const { album, name, artists } = currentPlayback;
     const { images } = album ?? null;
+
     currName = name;
     currImage = images[0].url;
     currArtists = artists.map(item => {
@@ -20,12 +19,13 @@ const PlayerCurrPlaying = () => {
         id: item.id,
         name: item.name,
       }
-    })
+    });
+    albumUri = album.uri ?? '';
   }
 
   return (
     <>
-      { (currentPlayback) && <CardSong image={currImage} name={currName} artists={currArtists} />}
+      { (currentPlayback) && <CardSong image={currImage} name={currName} artists={currArtists} albumUri={albumUri} />}
     </>
   )
 }
