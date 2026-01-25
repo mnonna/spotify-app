@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { playbackReducer } from "@/utils/redux/player";
+import { spotifyQueueReducer } from "@/utils/redux/queue";
 
 export const store = configureStore({
-  reducer: { playback: playbackReducer },
+  reducer: { 
+    playback: playbackReducer,
+    spotifyQueue: spotifyQueueReducer, 
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });
