@@ -1,11 +1,14 @@
+import { useAppDispatch } from '@/utils/redux/store';
 import Link from 'next/link';
 import Image from 'next/image';
 import AppButton from '../button/AppButton';
 import Placeholder from '../../../public/placeholder.svg';
+import { fetchQueue } from '@/utils/redux/queue';
 import "@/scss/cards/cardArtist.scss";
 
 export default function CardArtist(props) {
   const { image, name, uri, id } = props;
+  const dispatch = useAppDispatch();
 
   let type = '';
   if (uri && uri.length > 0) {
@@ -33,6 +36,10 @@ export default function CardArtist(props) {
       method: 'PUT',
       body: JSON.stringify(body)
     })
+
+    setTimeout(() => {
+      dispatch(fetchQueue());
+    }, 2000)
   }
 
   return (

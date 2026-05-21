@@ -29,6 +29,8 @@ const AppButton: FC<AppButtonProps> = ({
       SkipNextIcon: dynamic(() => import('@mui/icons-material/SkipNext'), { ssr: false }),
       PauseIcon: dynamic(() => import('@mui/icons-material/Pause'), { ssr: false }),
       PlayArrowIcon: dynamic(() => import('@mui/icons-material/PlayArrow'), { ssr: false }),
+      ViewListIcon: dynamic(() => import('@mui/icons-material/ViewList'), { ssr: false }),
+      CloseIcon: dynamic(() => import('@mui/icons-material/Close'), { ssr: false }),
     };
 
     return muiIcon && iconMap[muiIcon] ? iconMap[muiIcon] : null;

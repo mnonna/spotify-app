@@ -22,7 +22,7 @@ export default function PlaylistItems({uri, tracks, type="playlist"}) {
         }
 
         return (
-          <div key={index} className="playlistItems__item">
+          <div key={track.uri} className="playlistItems__item">
             <CardPlaylistSong {...cardProps}></CardPlaylistSong>
           </div>
         )

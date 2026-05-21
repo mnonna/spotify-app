@@ -2,6 +2,9 @@
 import Image from "next/image";
 import { formatNumberWithSpaces } from "@/utils/math";
 import '@/scss/playlist/playlistHeader.scss';
+import { closeQueue } from "@/utils/redux/queue";
+import AppButton from "../button/AppButton";
+import { useDispatch } from "react-redux";
 
 interface PlaylistHeaderProps {
   name: string;
@@ -12,6 +15,7 @@ interface PlaylistHeaderProps {
   followersCount?: number;
   full?: boolean;
   headerClass?: string;
+  headerType?: string;
 }
 
 export default function PlaylistHeader({
@@ -22,8 +26,10 @@ export default function PlaylistHeader({
   owner = "",
   followersCount = 0,
   full = false,
-  headerClass = "text-7xl"
+  headerClass = "text-7xl",
+  headerType = "playlist"
 }: Partial<PlaylistHeaderProps>) {
+  const dispatch = useDispatch();
   const followers = formatNumberWithSpaces(followersCount);
   const classes = full ? '-full' : '';
 
@@ -36,7 +42,7 @@ export default function PlaylistHeader({
   }
 
   return (
-    <section className={`playlistHeader ${classes}`}>
+    <section className={`playlistHeader flex gap-6 items-end mb-4 last:mb-0 ${classes}`}>
       {image &&
         <div className="playlistHeader__image">
           <Image
@@ -47,9 +53,17 @@ export default function PlaylistHeader({
             priority={true}
           />
         </div>}
-      <div className="playlistHeader__content">
+      <div className="w-full playlistHeader__content">
         <p className="playlistHeader__type text-sm font-medium">{type}</p>
-        <p className={`playlistHeader__title ${headerClass} font-bold`}>{name}</p>
+        <div className="w-full flex justify-between items-center gap-2">
+          <p className={`playlistHeader__title mb-4 last:mb-0 ${headerClass} font-bold`}>{name}</p>
+          {headerType === "queue" && <AppButton
+            classNames="-with-icon -round"
+              muiIcon="CloseIcon"
+              onClick={() => dispatch(closeQueue())}
+            />
+          }
+        </div>
         <p className="text-sm font-medium">{description}</p>
         {(owner || followers) &&
           <div className="playlistHeader__details">

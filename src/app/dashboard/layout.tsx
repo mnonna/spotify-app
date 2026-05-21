@@ -4,7 +4,7 @@ import SearchWidget from "@/components/search/searchWidget";
 import LibraryWidget from "@/components/lists/libraryWidget";
 import { NavPrevButton } from "@/components/button/NavPrevButton";
 import { NavForwardButton } from "@/components/button/NavForwardButton";
-import QueuePlaylist from "@/components/queue/queuePlaylist";
+import QueueTogglePanel from "@/components/queue/queueTogglePanel";
 
 export default function DashboardLayout({children}) {
   return (
@@ -38,9 +38,7 @@ export default function DashboardLayout({children}) {
             { children }
           </Box>
         </div>
-        <aside className="pageWrapper__queue absolute z-[9999] top-0 right-0 w-full h-full max-w-[600px] overflow-y-auto translate-x-[100%]">
-          <QueuePlaylist />
-        </aside>
+        <QueueTogglePanel />
       </div>
       <div className="pageWrapper__player">
         <PlayerPanel />

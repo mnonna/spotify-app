@@ -4,13 +4,12 @@ export const fetchQueue = createAsyncThunk(
     'spotifyQueue/fetchQueue',
     async (_, { rejectWithValue }) => {
         try {
-            // Call the API route
             const response = await fetch('/api/player/queue');
             if (!response.ok) {
                 throw new Error('Failed to fetch Spotify queue');
             }
             const data = await response.json();
-            return data.queue; // Assuming the API route returns a `queue` array
+            return data.queue;
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -21,10 +20,21 @@ const spotifyQueueSlice = createSlice({
     name: 'spotifyQueue',
     initialState: {
         queue: [],
+        isQueueVisible: false,
         loading: false,
         error: null,
     },
-    reducers: {},
+    reducers: {
+        closeQueue(state) {
+            state.isQueueVisible = false;
+        },
+        openQueue(state) {
+            state.isQueueVisible = true;
+        },
+        toggleQueue(state) {
+            state.isQueueVisible = !state.isQueueVisible;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchQueue.pending, (state) => {
@@ -42,4 +52,5 @@ const spotifyQueueSlice = createSlice({
     },
 });
 
+export const { closeQueue, openQueue, toggleQueue } = spotifyQueueSlice.actions;
 export const spotifyQueueReducer = spotifyQueueSlice.reducer;
