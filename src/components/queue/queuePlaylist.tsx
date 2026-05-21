@@ -25,7 +25,7 @@ const QueuePlaylist = () => {
       <div className={contentClassName}>
         <Suspense>
           <PlaylistHeader name="Current queue" headerClass="!mb-0 text-3xl" headerType="queue" />
-          {queue.length > 0 && (
+          {(queue?.length ?? 0) > 0 && (
             <PlaylistItems uri={null} tracks={queue} type="queue" />
           )}
         </Suspense>

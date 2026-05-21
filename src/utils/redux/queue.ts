@@ -9,7 +9,7 @@ export const fetchQueue = createAsyncThunk(
                 throw new Error('Failed to fetch Spotify queue');
             }
             const data = await response.json();
-            return data.queue;
+            return data.queue ?? [];
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -43,7 +43,7 @@ const spotifyQueueSlice = createSlice({
             })
             .addCase(fetchQueue.fulfilled, (state, action) => {
                 state.loading = false;
-                state.queue = action.payload;
+                state.queue = action.payload ?? [];
             })
             .addCase(fetchQueue.rejected, (state, action) => {
                 state.loading = false;

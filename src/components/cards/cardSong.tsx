@@ -6,7 +6,10 @@ import { iCardSongProps } from '@/interface/cardSong';
 import Placeholder from '../../../public/placeholder.svg';
 
 export default function CardSong(props: iCardSongProps) {
-  const { image, name, artists, uri, albumUri } = props;
+  const { image, name, artists = [], uri, albumUri } = props;
+  const maxArtists = 5;
+  const visibleArtists = artists.slice(0, maxArtists);
+  const hasMoreArtists = artists.length > maxArtists;
   let href = '';
   let albumHref = '';
 
@@ -58,18 +61,20 @@ export default function CardSong(props: iCardSongProps) {
       <div className="cardSong__data">
         <div className="cardSong__name text-sm font-bold">{name}</div>
         <div className="cardSong__artists">
-          {
-            artists.map((item, index) => {
-              let artistHref = `/dashboard/artist/${item.id}`;
-              return (
-                <div key={index} className='cardSong__artist text-xs'>
-                  <Link href={artistHref}>
-                    {`${item.name}${(index !== artists.length - 1) ? ',' : ''}`}
-                  </Link>
-                </div>
-              )
-            })
-          }
+          {visibleArtists.map((item, index) => {
+            const artistHref = `/dashboard/artist/${item.id}`;
+
+            return (
+              <div key={item.id ?? index} className="cardSong__artist text-xs">
+                <Link href={artistHref}>
+                  {`${item.name}${index !== visibleArtists.length - 1 ? ',' : ''}`}
+                </Link>
+              </div>
+            );
+          })}
+          {hasMoreArtists && (
+            <span className="cardSong__artists-more text-xs"> and more...</span>
+          )}
         </div>
       </div>
     </div>
