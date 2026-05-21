@@ -2,6 +2,7 @@ import PlayerPanel from "@/components/player/playerPanel";
 import Box from "@/components/box/box";
 import SearchWidget from "@/components/search/searchWidget";
 import LibraryWidget from "@/components/lists/libraryWidget";
+import { NavHomeButton } from "@/components/button/NavHomeButton";
 import { NavPrevButton } from "@/components/button/NavPrevButton";
 import { NavForwardButton } from "@/components/button/NavForwardButton";
 import QueueTogglePanel from "@/components/queue/queueTogglePanel";
@@ -11,6 +12,9 @@ export default function DashboardLayout({children}) {
     <section className="pageWrapper -has-player grid grid-cols-7 gap-2 md:grid-rows-dashboard">
       <div className="pageWrapper__top grid grid-cols-7 gap-2 md:col-span-7">
           <div className="pageWrapper__nav">
+            <div className="pageWrapper__nav-prev flex">
+              <NavHomeButton />
+            </div>
             <div className="pageWrapper__nav-prev flex">
               <NavPrevButton />
             </div>

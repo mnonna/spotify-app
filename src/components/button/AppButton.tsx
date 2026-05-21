@@ -24,6 +24,7 @@ const AppButton: FC<AppButtonProps> = ({
     const iconMap = {
       ArrowBack: dynamic(() => import('@mui/icons-material/ArrowBack'), { ssr: false }),
       ArrowForward: dynamic(() => import('@mui/icons-material/ArrowForward'), { ssr: false }),
+      Home: dynamic(() => import('@mui/icons-material/Home'), { ssr: false }),
       PlayArrow: dynamic(() => import('@mui/icons-material/PlayArrow'), { ssr: false }),
       SkipPreviousIcon: dynamic(() => import('@mui/icons-material/SkipPrevious'), { ssr: false }),
       SkipNextIcon: dynamic(() => import('@mui/icons-material/SkipNext'), { ssr: false }),
