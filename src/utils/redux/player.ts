@@ -1,33 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-export interface IPlaybackState {
-  currentPlayback: {[key: string] : any};
+
+export interface IPlaybackSnapshot {
+  currentPlayback: { uri: string; [key: string]: unknown } | null;
+  contextUri: string | null;
+  isPlaying: boolean;
 }
+
+export interface IPlaybackState extends IPlaybackSnapshot {}
 
 const initialState: IPlaybackState = {
   currentPlayback: null,
+  contextUri: null,
+  isPlaying: false,
 };
 
 export const playbackSlice = createSlice({
   name: "playbackState",
   initialState,
   reducers: {
-    setPlaybackState: (state, action: PayloadAction<{ uri: string; [key: string]: any }>) => {
-      const { currentPlayback } = state;
-      
-      if (!currentPlayback) {
-        state.currentPlayback = action.payload;
-      } else {
-        const { uri } = currentPlayback;
-        if (uri !== action.payload.uri) {
-          state.currentPlayback = action.payload;
-        }
-      }
-
-      return state;
+    setPlaybackSnapshot: (state, action: PayloadAction<IPlaybackSnapshot>) => {
+      state.currentPlayback = action.payload.currentPlayback;
+      state.contextUri = action.payload.contextUri;
+      state.isPlaying = action.payload.isPlaying;
     },
   },
 });
 
-export const { setPlaybackState } = playbackSlice.actions;
+export const { setPlaybackSnapshot } = playbackSlice.actions;
 export const playbackReducer = playbackSlice.reducer;

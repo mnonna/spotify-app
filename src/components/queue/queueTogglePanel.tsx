@@ -9,7 +9,7 @@ const QueueTogglePanel = () => {
 
   return (
     <aside
-      className={`pageWrapper__queue absolute z-[9999] top-0 right-0 w-full h-full max-w-[600px] overflow-y-auto transition-transform duration-300 ${
+      className={`pageWrapper__queue absolute z-[9999] top-0 right-0 w-full h-full max-w-[600px] overflow-hidden transition-transform duration-300 ${
         isQueueVisible ? 'translate-x-0' : 'translate-x-[100%]'
       }`}
     >

@@ -1,7 +1,9 @@
 import { Suspense } from "react";
 import fetchFromSpotify from "@/utils/fetch";
 import PlaylistHeader from "@/components/playlist/playlistHeader";
-import ListSection from "@/components/lists/listSection"
+import ListSection from "@/components/lists/listSection";
+import ListSectionSkeleton from "@/components/skeletons/listSectionSkeleton";
+import PlaylistHeaderSkeleton from "@/components/skeletons/playlistHeaderSkeleton";
 
 export default async function Artist({params}) {
   const { id } = params;
@@ -26,13 +28,13 @@ export default async function Artist({params}) {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PlaylistHeaderSkeleton full />}>
         <PlaylistHeader {...playlistHeaderData}></PlaylistHeader>
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<ListSectionSkeleton itemsCount={7} />}>
         <ListSection listType={'album'} params={albumParams}></ListSection>
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<ListSectionSkeleton itemsCount={7} />}>
         <ListSection listType={'album'} params={albumFeaturedParams}></ListSection>
       </Suspense> 
     </>

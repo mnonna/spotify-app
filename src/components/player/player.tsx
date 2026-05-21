@@ -3,7 +3,7 @@ import { publish } from '@/utils/events/events';
 import AppButton from '@/components/button/AppButton';
 import { getPercentage, msToTime } from '@/utils/math';
 import { subscribe, unsubscribe } from '@/utils/events/events';
-import { setPlaybackState } from '@/utils/redux/player';
+import { setPlaybackSnapshot } from '@/utils/redux/player';
 import { useAppDispatch, useAppSelector } from '@/utils/redux/store';
 import '@/scss/player/player.scss';
 
@@ -11,7 +11,6 @@ export default function Player() {
   const dispatch = useAppDispatch();
   const currentSong = useAppSelector(state => state.playback);
   const { currentPlayback } = currentSong;
-  const currentUri = currentPlayback?.uri;
   const currentDuration = currentPlayback?.duration_ms;
 
   const [current, setCurrent] = useState(null);
@@ -26,17 +25,20 @@ export default function Player() {
   const fetchCurrent = () => {
     fetch(`/api/player?${urlParams}`).then(res => res.json()).then((data) => {
       if (data === null || data === undefined) return;
-      const { item, progress_ms, is_playing } = data;
-      
+      const { item, progress_ms, is_playing, context } = data;
+
+      dispatch(setPlaybackSnapshot({
+        currentPlayback: item ?? null,
+        contextUri: context?.uri ?? null,
+        isPlaying: is_playing ?? false,
+      }));
+
       if (item === null || item === undefined) return;
-      const { uri } = item;
 
       setCurrent(item);
       setProgress(progress_ms);
       setIsPlaying(is_playing);
       setHasInit(true);
-
-      if (uri !== currentUri) dispatch(setPlaybackState(item));
     });
   }
 

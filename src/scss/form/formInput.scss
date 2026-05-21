@@ -19,11 +19,12 @@
   }
 
   &.-small {
-    #{$root}__input:focus {
+    #{$root}__input:focus,
+    &#{$root}--filled #{$root}__input {
       & ~ #{$root}__label {
         opacity: 0;
         pointer-events: none;
-      } 
+      }
     }
   }
 

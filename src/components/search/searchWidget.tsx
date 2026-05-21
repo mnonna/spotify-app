@@ -11,10 +11,11 @@ const SearchWidget = () => {
     const debouncedSearch = useDebounce(phrase, 1000);
 
     useEffect(() => {
-      if (debouncedSearch) {
-        router.push(`/dashboard/search/${debouncedSearch}`);
+      const trimmed = debouncedSearch.trim();
+      if (trimmed) {
+        router.push(`/dashboard/search/${encodeURIComponent(trimmed)}`);
       }
-    }, [debouncedSearch])
+    }, [debouncedSearch, router])
 
     return (
         <div className="searchWidget">
