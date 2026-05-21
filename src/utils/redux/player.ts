@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+export interface ICurrentPlayback {
+  uri: string;
+  duration_ms: number;
+  name?: string;
+  album?: {
+    uri?: string;
+    images?: { url: string }[];
+  };
+  artists?: { id: string; name: string }[];
+}
+
 export interface IPlaybackSnapshot {
-  currentPlayback: { uri: string; [key: string]: unknown } | null;
+  currentPlayback: ICurrentPlayback | null;
   contextUri: string | null;
   isPlaying: boolean;
 }
